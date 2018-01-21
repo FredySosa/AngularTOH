@@ -4,17 +4,15 @@ import { Heroe } from '../../models/Heroe';
 import { HeroeService } from '../../services/heroe/heroe-service.service';
 
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class HeroesComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
   heroes: Heroe[];
 
-  constructor(private heroeServ: HeroeService) {
-
-  }
+  constructor(private heroeServ: HeroeService) { }
 
   ngOnInit() {
     this.getHeroes();
@@ -22,7 +20,7 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroeServ.getHeroes().subscribe( hers => {
-      this.heroes = hers;
+      this.heroes = hers.slice(1, 5);
     });
   }
 
